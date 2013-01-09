@@ -40,6 +40,11 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>CompreReceba-business</finalName>
@@ -48,5 +53,6 @@
 		<groupId>br.com.ecommerce</groupId>
 		<artifactId>CompreReceba</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../CompreReceba/pom.xml</relativePath>
 	</parent>
 </project>

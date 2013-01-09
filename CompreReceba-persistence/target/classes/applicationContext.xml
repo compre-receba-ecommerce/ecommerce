@@ -14,15 +14,15 @@
 	<!-- Define o pacote onde o Spring vai procurar por beans anotados -->
 	<context:component-scan
 		base-package="br.com.ecommerce" />
-	<!-- 
+	
 	<tx:annotation-driven />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/OnzeVencedorDB" />
-		<property name="username" value="USUARIO" />
-		<property name="password" value="SENHA" />
+		<property name="url" value="jdbc:mysql://localhost:3306/compre-receba-ecommerce" />
+		<property name="username" value="root" />
+		<property name="password" value="lalala01" />
 	</bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -39,6 +39,5 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	 -->
 </beans>
 
