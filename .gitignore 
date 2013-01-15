@@ -1,4 +1,10 @@
 .classpath
 .project
 .settings/
-target
+target/*
+*.class
+*.DS_Store
+build/classes/*
+web/WEB-INF/classes/
+bin/
+
