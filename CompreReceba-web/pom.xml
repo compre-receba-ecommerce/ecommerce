@@ -38,5 +38,6 @@
 		<groupId>br.com.ecommerce</groupId>
 		<artifactId>CompreReceba</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../CompreReceba/pom.xml</relativePath>
 	</parent>
 </project>
