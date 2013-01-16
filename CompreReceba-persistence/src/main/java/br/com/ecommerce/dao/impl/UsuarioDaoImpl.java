@@ -46,7 +46,7 @@ public class UsuarioDaoImpl {
   @SuppressWarnings("unchecked")
   public List<Usuario> selectByNome(String nome) {
     return (List<Usuario>) hibernateTemplate.
-        find("from " + Usuario.class, nome);
+        find("from Usuario u WHERE u.nome=?", nome);
   }
 
   public Usuario selectById(String id) {

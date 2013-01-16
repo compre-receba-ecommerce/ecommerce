@@ -4,12 +4,16 @@
 package br.com.ecommerce.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,70 +21,69 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "perfis")
-public class Perfil implements Serializable{
-  
-  /**
+public class Perfil implements Serializable {
+
+	/**
    * 
    */
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(generator = "system-uuid")
-  @Column(name = "id")
-  private int id;
-  
-  private String nome;
-  
-  private String descricao;
-  
-  @OneToOne
-  private Usuario usuario;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
 
-  public int getId() {
-    return id;
-  }
+	private String nome;
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	private String descricao;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "perfis")
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
-  public String getNome() {
-    return nome;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getDescricao() {
-    return descricao;
-  }
+	public String getNome() {
+		return nome;
+	}
 
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
-  }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-  public Usuario getUsuario() {
-    return usuario;
-  }
+	public String getDescricao() {
+		return descricao;
+	}
 
-  public void setUsuario(Usuario usuario) {
-    this.usuario = usuario;
-  }
-  
-  @Override
-  public String toString() {
-    return super.toString();
-  }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    return super.equals(obj);
-  }
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
-  @Override
-  public int hashCode() {
-    return super.hashCode();
-  }
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 
 }

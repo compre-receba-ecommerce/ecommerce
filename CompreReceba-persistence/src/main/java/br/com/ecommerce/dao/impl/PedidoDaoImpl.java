@@ -41,7 +41,7 @@ public class PedidoDaoImpl implements PedidoDAO{
   @SuppressWarnings("unchecked")
   public List<Pedido> selectByStatus(String status) {
     return hibernateTemplate.
-        find("FROM " + Pedido.class, status);
+        find("FROM Pedido p WHERE p.status= ?", status);
   }
 
   public Pedido selectByNumero(String numero) {
@@ -51,7 +51,7 @@ public class PedidoDaoImpl implements PedidoDAO{
   @SuppressWarnings("unchecked")
   public List<Pedido> selectByData(Date date) {
     return hibernateTemplate.
-        find("FROM " + Pedido.class, date);
+        find("FROM Pedido p WHERE p.data=?", date);
   }
 
   @Transactional(readOnly = false)

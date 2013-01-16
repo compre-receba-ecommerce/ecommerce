@@ -42,13 +42,13 @@ public class EnderecoDaoImpl implements EnderecoDAO{
   @SuppressWarnings("unchecked")
   public List<Endereco> selectByRua(String rua) {
     return (List<Endereco>) hibernateTemplate.
-        find("from " + Endereco.class.getName(), rua);
+        find("from Endereco e WHERE e.rua= ?", rua);
   }
 
   @SuppressWarnings("unchecked")
   public List<Endereco> selectByCep(String cep) {
     return (List<Endereco>) hibernateTemplate.
-        find("from " + Endereco.class.getName(), cep);
+        find("from Endereco e WHERE e.cep= ?", cep);
   }
 
   public Endereco selectById(String id) {

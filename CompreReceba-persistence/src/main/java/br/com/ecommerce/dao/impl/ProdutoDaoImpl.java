@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ecommerce.dao.ProdutoDAO;
-import br.com.ecommerce.entity.Cliente;
 import br.com.ecommerce.entity.Produto;
 
 /**
@@ -42,13 +41,13 @@ public class ProdutoDaoImpl implements ProdutoDAO{
 
   public Produto selectbyMarca(String marca) {
     return (Produto) hibernateTemplate.
-        find("FROM "+Cliente.class, marca);
+        find("FROM Produto p WHERE p.marca=?", marca);
   }
 
   @SuppressWarnings("unchecked")
   public List<Produto> selectByNome(String nome) {
     return (List<Produto>)hibernateTemplate.
-        find("from " + Produto.class.getName(), nome);
+        find("from Produto p where p.nome=?", nome);
   }
 
   public Produto selectById(String id) {

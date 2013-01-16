@@ -14,30 +14,39 @@
 	<!-- Define o pacote onde o Spring vai procurar por beans anotados -->
 	<context:component-scan
 		base-package="br.com.ecommerce" />
-	
-	<tx:annotation-driven />
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/compre-receba-ecommerce" />
-		<property name="username" value="root" />
-		<property name="password" value="lalala01" />
-	</bean>
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="ecommerce" />
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
-				<property name="showSql" value="true" />
-			</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.url">jdbc:mysql://localhost/compre-receba-ecommerce</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.username">root</prop>
+				<prop key="hibernate.connection.password">lalala01</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.connection.autocommit">true</prop> -->
+			</props>
+		</property>
+
+		<property name="annotatedClasses">
+			<list>
+				<value>br.com.ecommerce.entity.Produto</value>
+				<value>br.com.ecommerce.entity.Categoria</value>
+				<value>br.com.ecommerce.entity.Cliente</value>
+				<value>br.com.ecommerce.entity.Endereco</value>
+				<value>br.com.ecommerce.entity.ItensPedidos</value>
+				<value>br.com.ecommerce.entity.Pedido</value>
+				<value>br.com.ecommerce.entity.Perfil</value>
+				<value>br.com.ecommerce.entity.Usuario</value>
+			</list>
 		</property>
 	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
+	<tx:annotation-driven />
 </beans>
-

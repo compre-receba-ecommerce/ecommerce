@@ -40,7 +40,7 @@ public class CategoriaDaoImpl implements CategoriaDAO{
   @SuppressWarnings("unchecked")
   public List<Categoria> selectByNome(String nome) {
     return hibernateTemplate.
-        find("FROM " + Categoria.class, nome);
+        find("FROM Categoria c WHERE c.nome=? ", nome);
   }
 
   public Categoria selectById(String id) {

@@ -42,7 +42,7 @@ public class PerfilDaoImpl implements PerfilDAO{
   @SuppressWarnings("unchecked")
   public List<Perfil> selectByNome(String nome) {
     return hibernateTemplate.
-        find("FROM " + Perfil.class, nome);
+        find("FROM Perfil p WHERE p.nome=?", nome);
   }
 
   public Perfil selectById(String id) {

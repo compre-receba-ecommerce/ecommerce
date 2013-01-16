@@ -42,13 +42,13 @@ public class ClienteDaoImpl implements ClienteDAO {
 
   public Cliente selectbyEmail(String email) {
     return (Cliente) hibernateTemplate.
-        find("FROM "+Cliente.class, email);
+        find("FROM Cliente c WHERE c.email = ?", email);
   }
 
   @SuppressWarnings("unchecked")
   public List<Cliente> selectByNome(String nome) {
     return (List<Cliente>) hibernateTemplate.
-        find("FROM " + Cliente.class, nome);
+        find("FROM Cliente c WHERE c.nome= ?", nome);
   }
 
   public Cliente selectById(String id) {
