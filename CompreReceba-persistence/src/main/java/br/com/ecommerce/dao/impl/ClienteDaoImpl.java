@@ -18,14 +18,14 @@ import br.com.ecommerce.entity.Cliente;
  * @author relfarias@gmail.com (Rejaine Farias)
  */
 
-@Repository("ClienteDAO")
+@Repository("clienteDao")
 @Transactional
 public class ClienteDaoImpl implements ClienteDAO {
 
   private HibernateTemplate hibernateTemplate;
 
   @Autowired
-  public void setSessionFactory(SessionFactory sessionFactory) {
+  public ClienteDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
 

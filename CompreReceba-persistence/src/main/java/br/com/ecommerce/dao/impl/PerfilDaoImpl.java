@@ -17,14 +17,14 @@ import br.com.ecommerce.entity.Perfil;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("PerfilDAO")
+@Repository("perfilDao")
 @Transactional
-public class PerfilDaoImpl implements PerfilDAO{
-  
+public class PerfilDaoImpl implements PerfilDAO {
+
   private HibernateTemplate hibernateTemplate;
-  
+
   @Autowired
-  public void setSessionFactory(SessionFactory sessionFactory){
+  public PerfilDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
 
@@ -53,5 +53,5 @@ public class PerfilDaoImpl implements PerfilDAO{
   public void delete(Perfil perfil) {
     hibernateTemplate.delete(perfil);
   }
-  
+
 }

@@ -16,16 +16,16 @@ import br.com.ecommerce.entity.Categoria;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("CategoriaDAO")
+@Repository("categoriaDao")
 @Transactional
-public class CategoriaDaoImpl implements CategoriaDAO{
+public class CategoriaDaoImpl implements CategoriaDAO {
 
   private HibernateTemplate hibernateTemplate;
-  
-  public void sessionFactory(SessionFactory sessionFactory){
+
+  public CategoriaDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
-  
+
   @Transactional(readOnly = false)
   public void save(Categoria categoria) {
     hibernateTemplate.saveOrUpdate(categoria);
@@ -34,7 +34,7 @@ public class CategoriaDaoImpl implements CategoriaDAO{
   @SuppressWarnings("unchecked")
   public List<Categoria> getAll() {
     return hibernateTemplate.
-        find("FROM "+ Categoria.class.getName());
+        find("FROM " + Categoria.class.getName());
   }
 
   @SuppressWarnings("unchecked")

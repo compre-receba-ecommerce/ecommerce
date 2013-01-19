@@ -13,18 +13,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ecommerce.entity.Usuario;
 
-
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("UsuarioDAO")
+@Repository("usuarioDao")
 @Transactional
 public class UsuarioDaoImpl {
 
   private HibernateTemplate hibernateTemplate;
 
   @Autowired
-  public void setSessionFactory(SessionFactory sessionFactory) {
+  public UsuarioDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
 
@@ -57,5 +56,5 @@ public class UsuarioDaoImpl {
   public void delete(Usuario usuario) {
     hibernateTemplate.delete(usuario);
   }
-  
+
 }

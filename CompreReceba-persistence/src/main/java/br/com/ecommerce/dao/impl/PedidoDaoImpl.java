@@ -17,16 +17,16 @@ import br.com.ecommerce.entity.Pedido;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("PedidoDAO")
+@Repository("pedidoDao")
 @Transactional
-public class PedidoDaoImpl implements PedidoDAO{
+public class PedidoDaoImpl implements PedidoDAO {
 
   private HibernateTemplate hibernateTemplate;
-  
-  public void sessionFactory(SessionFactory sessionFactory){
+
+  public PedidoDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
-  
+
   @Transactional(readOnly = false)
   public void save(Pedido pedido) {
     hibernateTemplate.saveOrUpdate(pedido);

@@ -18,16 +18,16 @@ import br.com.ecommerce.entity.Endereco;
  * @author relfarias@gmail.com (Rejaine Farias)
  */
 @Repository
-@Transactional("EnderecoDAO")
-public class EnderecoDaoImpl implements EnderecoDAO{
+@Transactional("enderecoDao")
+public class EnderecoDaoImpl implements EnderecoDAO {
 
   private HibernateTemplate hibernateTemplate;
 
   @Autowired
-  public void setSessionFactory(SessionFactory sessionFactory) {
+  public EnderecoDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
-  
+
   @Transactional(readOnly = false)
   public void save(Endereco endereco) {
     hibernateTemplate.saveOrUpdate(endereco);
@@ -35,7 +35,7 @@ public class EnderecoDaoImpl implements EnderecoDAO{
 
   @SuppressWarnings("unchecked")
   public List<Endereco> getAll() {
-    return (List<Endereco>)hibernateTemplate.
+    return (List<Endereco>) hibernateTemplate.
         find("from " + Endereco.class.getName());
   }
 

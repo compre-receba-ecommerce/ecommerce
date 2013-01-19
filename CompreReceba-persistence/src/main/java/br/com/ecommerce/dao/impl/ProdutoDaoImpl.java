@@ -17,14 +17,14 @@ import br.com.ecommerce.entity.Produto;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("ProdutoDAO")
+@Repository("produtoDao")
 @Transactional
-public class ProdutoDaoImpl implements ProdutoDAO{
-  
+public class ProdutoDaoImpl implements ProdutoDAO {
+
   private HibernateTemplate hibernateTemplate;
-  
+
   @Autowired
-  public void sessionFactory(SessionFactory sessionFactory){
+  public ProdutoDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
 
@@ -35,7 +35,7 @@ public class ProdutoDaoImpl implements ProdutoDAO{
 
   @SuppressWarnings("unchecked")
   public List<Produto> getAll() {
-    return (List<Produto>)hibernateTemplate.
+    return (List<Produto>) hibernateTemplate.
         find("from " + Produto.class.getName());
   }
 
@@ -46,7 +46,7 @@ public class ProdutoDaoImpl implements ProdutoDAO{
 
   @SuppressWarnings("unchecked")
   public List<Produto> selectByNome(String nome) {
-    return (List<Produto>)hibernateTemplate.
+    return (List<Produto>) hibernateTemplate.
         find("from Produto p where p.nome=?", nome);
   }
 

@@ -16,13 +16,13 @@ import br.com.ecommerce.entity.ItensPedidos;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("ItensPedidosDAO")
+@Repository("itensPedidosDao")
 @Transactional
-public class ItensPedidosDaoImpl implements ItensPedidosDAO{
-  
+public class ItensPedidosDaoImpl implements ItensPedidosDAO {
+
   private HibernateTemplate hibernateTemplate;
-  
-  public void sessionFactoryu(SessionFactory sessionFactory){
+
+  public ItensPedidosDaoImpl(SessionFactory sessionFactory) {
     hibernateTemplate = new HibernateTemplate(sessionFactory);
   }
 
