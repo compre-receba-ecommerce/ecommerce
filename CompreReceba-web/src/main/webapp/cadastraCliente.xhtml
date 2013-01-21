@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:composition template="./templates/template.xhtml">
+
+	<ui:define name="topo">
+		<h:outputLabel value="Cadastro de Cliente" />
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="cadcliente">
+			<h:panelGrid columns="2" cellspacing="2">
+				<f:facet name="header">
+					<h:outputText value="Cadastro de Cliente" />
+				</f:facet>
+
+				<h:outputLabel value="Nome" for="nome" />
+				<h:inputText value="#{}" id="nome" required="true"
+					requiredMessage="Preencha o nome!">
+					<f:validateLength maximum="30" minimum="3" />
+				</h:inputText>
+
+				<h:outputLabel value="Sobrenome" for="sobrenome" />
+				<h:inputText value="#{}" id="sobrenome" required="true"
+					requiredMessage="Preencha o sobrenome!">
+					<f:validateLength maximum="30" minimum="3" />
+				</h:inputText>
+
+				<h:outputLabel value="E-mail" for="email" />
+				<h:inputText value="#{}" id="email" required="true"
+					requiredMessage="Preencha o E-mail!"
+					validatorMessage="Informe um e-mail válido!">
+				</h:inputText>
+
+				<h:outputLabel value="Senha de cadastro" for="senha" />
+				<h:inputText value="#{}" id="senha" required="true"
+					requiredMessage="Preencha a senha!"
+					validatorMessage="A senha precisa ter no mínimo 8 dígitos.">
+					<f:validateLength minimum="8" />
+				</h:inputText>
+
+				<h:outputLabel value="Telefone" for="telefone" />
+				<h:inputText value="#{}" id="telefone" required="true"
+					requiredMessage="Preencha o telefone!" />
+
+				<h:commandButton value="Salvar" action="#{}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

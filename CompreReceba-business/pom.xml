@@ -45,7 +45,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>br.com.ecommerce</groupId>
 			<artifactId>CompreReceba-persistence</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
