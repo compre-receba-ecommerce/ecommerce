@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
@@ -24,34 +26,35 @@ public class Cliente implements Serializable {
   /**
    * 
    */
-  private static final long serialVersionUID = 8496087166198616020L; 
-  
+  private static final long serialVersionUID = 8496087166198616020L;
+
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private int id;
-  
+
   @Column(name = "ativo")
   private boolean ativo;
-  
+
   @Column(name = "nome")
   private String nome;
-  
+
   @Column(name = "sobrenome")
   private String sobrenome;
-  
+
+  @Email
   @Column(name = "email")
   private String email;
-  
+
   @Column(name = "senha")
   private String senha;
-  
+
   @Column(name = "telefone")
   private String telefone;
-  
+
   @OneToMany
   private List<Endereco> enderecos;
-  
+
   @OneToMany
   private List<Pedido> pedidos;
 
@@ -118,7 +121,7 @@ public class Cliente implements Serializable {
   public void setEnderecos(List<Endereco> enderecos) {
     this.enderecos = enderecos;
   }
-  
+
   public List<Pedido> getPedidos() {
     return pedidos;
   }

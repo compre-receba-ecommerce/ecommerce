@@ -5,6 +5,6 @@ target/*
 *.class
 *.DS_Store
 build/classes/*
-web/WEB-INF/classes/
+web/WEB-INF/classes/*
 bin/
-
+.DS_Store

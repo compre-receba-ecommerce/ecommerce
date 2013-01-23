@@ -5,7 +5,6 @@ package br.com.ecommerce.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,46 +16,42 @@ import br.com.ecommerce.entity.Produto;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("ProdutoDAO")
+@Repository("produtoDao")
 @Transactional
-public class ProdutoDaoImpl implements ProdutoDAO{
-  
-  private HibernateTemplate hibernateTemplate;
-  
-  @Autowired
-  public void sessionFactory(SessionFactory sessionFactory){
-    hibernateTemplate = new HibernateTemplate(sessionFactory);
-  }
+public class ProdutoDaoImpl implements ProdutoDAO {
 
-  @Transactional(readOnly = false)
-  public void save(Produto produto) {
-    hibernateTemplate.saveOrUpdate(produto);
-  }
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-  @SuppressWarnings("unchecked")
-  public List<Produto> getAll() {
-    return (List<Produto>)hibernateTemplate.
-        find("from " + Produto.class.getName());
-  }
+	@Transactional(readOnly = false)
+	public void save(Produto produto) {
+		hibernateTemplate.saveOrUpdate(produto);
+	}
 
-  public Produto selectbyMarca(String marca) {
-    return (Produto) hibernateTemplate.
-        find("FROM Produto p WHERE p.marca=?", marca);
-  }
+	@SuppressWarnings("unchecked")
+	public List<Produto> getAll() {
+		return (List<Produto>) hibernateTemplate.find("from "
+				+ Produto.class.getName());
+	}
 
-  @SuppressWarnings("unchecked")
-  public List<Produto> selectByNome(String nome) {
-    return (List<Produto>)hibernateTemplate.
-        find("from Produto p where p.nome=?", nome);
-  }
+	public Produto selectbyMarca(String marca) {
+		return (Produto) hibernateTemplate.find(
+				"FROM Produto p WHERE p.marca=?", marca);
+	}
 
-  public Produto selectById(String id) {
-    return hibernateTemplate.get(Produto.class, id);
-  }
+	@SuppressWarnings("unchecked")
+	public List<Produto> selectByNome(String nome) {
+		return (List<Produto>) hibernateTemplate.find(
+				"from Produto p where p.nome=?", nome);
+	}
 
-  @Transactional(readOnly = false)
-  public void delete(Produto produto) {
-    hibernateTemplate.delete(produto);
-  }
+	public Produto selectById(String id) {
+		return hibernateTemplate.get(Produto.class, id);
+	}
+
+	@Transactional(readOnly = false)
+	public void delete(Produto produto) {
+		hibernateTemplate.delete(produto);
+	}
 
 }

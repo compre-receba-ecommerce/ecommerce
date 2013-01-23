@@ -6,14 +6,15 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 
 public class GeraBancoDeDados {
 
-	public static void main(String[] args) {
-		
-		Ejb3Configuration cfgConfiguration = new Ejb3Configuration();
-		cfgConfiguration.configure("ecommerce", null);
-		cfgConfiguration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
-		Configuration configuration = cfgConfiguration.getHibernateConfiguration();
-		
-		SchemaExport schemaExport = new SchemaExport(configuration);
-		schemaExport.create(true, false);
-	}
+  public static void main(String[] args) {
+
+    Ejb3Configuration cfgConfiguration = new Ejb3Configuration();
+    cfgConfiguration.configure("ecommerce", null);
+    cfgConfiguration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+
+    Configuration configuration = cfgConfiguration.getHibernateConfiguration();
+
+    SchemaExport schemaExport = new SchemaExport(configuration);
+    schemaExport.create(true, false);
+  }
 }

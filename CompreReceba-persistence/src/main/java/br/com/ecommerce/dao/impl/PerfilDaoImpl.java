@@ -5,7 +5,6 @@ package br.com.ecommerce.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,41 +16,35 @@ import br.com.ecommerce.entity.Perfil;
 /**
  * @author relfarias@gmail.com (Rejaine Farias)
  */
-@Repository("PerfilDAO")
+@Repository("perfilDao")
 @Transactional
-public class PerfilDaoImpl implements PerfilDAO{
-  
-  private HibernateTemplate hibernateTemplate;
-  
-  @Autowired
-  public void setSessionFactory(SessionFactory sessionFactory){
-    hibernateTemplate = new HibernateTemplate(sessionFactory);
-  }
+public class PerfilDaoImpl implements PerfilDAO {
 
-  @Transactional(readOnly = false)
-  public void save(Perfil perfil) {
-    hibernateTemplate.saveOrUpdate(perfil);
-  }
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-  @SuppressWarnings("unchecked")
-  public List<Perfil> getAll() {
-    return hibernateTemplate.
-        find("FROM " + Perfil.class.getName());
-  }
+	@Transactional(readOnly = false)
+	public void save(Perfil perfil) {
+		hibernateTemplate.saveOrUpdate(perfil);
+	}
 
-  @SuppressWarnings("unchecked")
-  public List<Perfil> selectByNome(String nome) {
-    return hibernateTemplate.
-        find("FROM Perfil p WHERE p.nome=?", nome);
-  }
+	@SuppressWarnings("unchecked")
+	public List<Perfil> getAll() {
+		return hibernateTemplate.find("FROM " + Perfil.class.getName());
+	}
 
-  public Perfil selectById(String id) {
-    return hibernateTemplate.get(Perfil.class, id);
-  }
+	@SuppressWarnings("unchecked")
+	public List<Perfil> selectByNome(String nome) {
+		return hibernateTemplate.find("FROM Perfil p WHERE p.nome=?", nome);
+	}
 
-  @Transactional(readOnly = false)
-  public void delete(Perfil perfil) {
-    hibernateTemplate.delete(perfil);
-  }
-  
+	public Perfil selectById(String id) {
+		return hibernateTemplate.get(Perfil.class, id);
+	}
+
+	@Transactional(readOnly = false)
+	public void delete(Perfil perfil) {
+		hibernateTemplate.delete(perfil);
+	}
+
 }

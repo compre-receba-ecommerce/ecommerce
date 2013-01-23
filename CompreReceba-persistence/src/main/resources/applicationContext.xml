@@ -12,41 +12,33 @@
 	<!-- Seta anotacoes para serem usadas pelo Spring -->
 	<context:annotation-config />
 	<!-- Define o pacote onde o Spring vai procurar por beans anotados -->
-	<context:component-scan
-		base-package="br.com.ecommerce" />
+	<context:component-scan base-package="br.com.ecommerce" />
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="packagesToScan" value="br.com.ecommerce.entity"></property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.connection.url">jdbc:mysql://localhost/compre-receba-ecommerce</prop>
 				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
 				<prop key="hibernate.connection.username">root</prop>
-				<prop key="hibernate.connection.password">lalala01</prop>
+				<prop key="hibernate.connection.password">admin</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<!-- <prop key="hibernate.connection.autocommit">true</prop> -->
 			</props>
 		</property>
-
-		<property name="annotatedClasses">
-			<list>
-				<value>br.com.ecommerce.entity.Produto</value>
-				<value>br.com.ecommerce.entity.Categoria</value>
-				<value>br.com.ecommerce.entity.Cliente</value>
-				<value>br.com.ecommerce.entity.Endereco</value>
-				<value>br.com.ecommerce.entity.ItensPedidos</value>
-				<value>br.com.ecommerce.entity.Pedido</value>
-				<value>br.com.ecommerce.entity.Perfil</value>
-				<value>br.com.ecommerce.entity.Usuario</value>
-			</list>
-		</property>
+	</bean>
+	<!-- Cria o bean hibernateTemplate e injeta a sessionFactory -->
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>	
-	<tx:annotation-driven />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
